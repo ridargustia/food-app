@@ -30,9 +30,10 @@ class AuthController extends Controller
             ]);
         }else{
             $file = $request->file('image');
-            $image_name = time()."_".$file->getClientOriginalName();
-            $path = $request->file('image')->move(public_path("/image_profile"), $image_name);
-            $imageURL = url('/image_profile'.$image_name);
+            $image_name = time()."_".$request->name.".".$file->getClientOriginalExtension();
+            $path = $file->storeAs('image-user', $image_name);
+            // $path = $request->file('image')->move(public_path("/image_profile"), $image_name);
+            // $imageURL = url('/image_profile'.$image_name);
 
             $user = User::create([
                 'name' => $request->name,
