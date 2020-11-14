@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\product;
+use App\place;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -17,18 +17,19 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(product::class, function (Faker $faker) {
+$factory->define(place::class, function (Faker $faker) {
     return [
-        'id_place' => $faker->randomElement($array = array(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19)),
         'id_category' => $faker->randomElement($array = array(1, 2, 3)),
-        'id_subcategory' => $faker->randomElement($array = array(1, 2, 3)),
+        'id_user' => $faker->randomElement($array = array(8, 9, 10)),
         'name' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-        'price' => $faker->randomElement($array = array(5000, 7500, 8000, 8500)),
+        'phone_number' => $faker->numerify('####-####-####'),
+        'address' => $faker->address,
+        'open_time' => '07:00 - 16:00',
         'description' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'image' => $faker->sentence($nbWords = 3, $variableNbWords = true).'jpg',
-        'is_active' => 1,
-        'is_order' => 1,
+        'url_gmap' => 'https://blablabla.com',
+        'is_open' => 1,
+        'is_close' => 0,
+        'is_off' => 0,
         'counter' => $faker->randomDigit,
-        'rating' => $faker->numberBetween($min = 0, 5),
     ];
 });
