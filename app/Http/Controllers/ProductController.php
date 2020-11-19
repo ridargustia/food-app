@@ -10,7 +10,11 @@ class ProductController extends Controller
 {
     public function foodsRandom()
     {
-        $foods = product::where('id_category', 1)->get()->random(3);
+        // $foods = product::where('id_category', 1)->get()->random(3);
+        $foods = product::where('id_category', 1)
+            ->orderBy('counter', 'desc')
+            ->take(3)
+            ->get();
 
         return fractal()
             ->collection($foods)
@@ -20,7 +24,10 @@ class ProductController extends Controller
 
     public function craftsRandom()
     {
-        $crafts = product::where('id_category', 2)->get()->random(3);
+        $crafts = product::where('id_category', 2)
+            ->orderBy('counter', 'desc')
+            ->take(3)
+            ->get();
 
         return fractal()
             ->collection($crafts)
@@ -30,7 +37,10 @@ class ProductController extends Controller
 
     public function travelsRandom()
     {
-        $travels = product::where('id_category', 3)->get()->random(3);
+        $travels = product::where('id_category', 3)
+            ->orderBy('counter', 'desc')
+            ->take(3)
+            ->get();
 
         return fractal()
             ->collection($travels)
