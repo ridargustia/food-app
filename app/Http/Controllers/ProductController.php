@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Transformers\ProductTransformer;
+use App\Transformers\PlaceTransformer;
 use Illuminate\Http\Request;
 use App\product;
+use App\place;
 
 class ProductController extends Controller
 {
@@ -37,14 +39,14 @@ class ProductController extends Controller
 
     public function travelsRandom()
     {
-        $travels = product::where('id_category', 3)
+        $travels = place::where('id_category', 3)
             ->orderBy('counter', 'desc')
             ->take(3)
             ->get();
 
         return fractal()
             ->collection($travels)
-            ->transformWith(new ProductTransformer)
+            ->transformWith(new PlaceTransformer)
             ->toArray();
     }
 }
