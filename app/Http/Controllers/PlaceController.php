@@ -10,7 +10,20 @@ use Auth;
 
 class PlaceController extends Controller
 {
-    public function add(Request $request)
+    public function travelsRandom()         //Menampilkan data place wisata dengan counter terbanyak (Dashboard utama)
+    {
+        $travels = place::where('id_category', 3)
+            ->orderBy('counter', 'desc')
+            ->take(3)
+            ->get();
+
+        return fractal()
+            ->collection($travels)
+            ->transformWith(new PlaceTransformer)
+            ->toArray();
+    }
+
+    public function add(Request $request)       //POST data place
     {
         $this->validate($request, [
             'id_category' => 'required',
@@ -41,7 +54,7 @@ class PlaceController extends Controller
         return response()->json($response, 201);
     }
 
-    public function show()
+    public function show()          //Menampilkan detail place
     {
         $user = Auth::user()->id;
         // $place = place::where('id_user', 8);

@@ -6,11 +6,10 @@ use App\Transformers\ProductTransformer;
 use App\Transformers\PlaceTransformer;
 use Illuminate\Http\Request;
 use App\product;
-use App\place;
 
 class ProductController extends Controller
 {
-    public function foodsRandom()
+    public function foodsRandom()       //Menampilkan data produk kuliner dengan counter terbanyak (Dashboard utama)
     {
         // $foods = product::where('id_category', 1)->get()->random(3);
         $foods = product::where('id_category', 1)
@@ -24,7 +23,7 @@ class ProductController extends Controller
             ->toArray();
     }
 
-    public function craftsRandom()
+    public function craftsRandom()      //Menampilkan data produk kerajinan dengan counter terbanyak (Dashboard utama)
     {
         $crafts = product::where('id_category', 2)
             ->orderBy('counter', 'desc')
@@ -37,16 +36,4 @@ class ProductController extends Controller
             ->toArray();
     }
 
-    public function travelsRandom()
-    {
-        $travels = place::where('id_category', 3)
-            ->orderBy('counter', 'desc')
-            ->take(3)
-            ->get();
-
-        return fractal()
-            ->collection($travels)
-            ->transformWith(new PlaceTransformer)
-            ->toArray();
-    }
 }
