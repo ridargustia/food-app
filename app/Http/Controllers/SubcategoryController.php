@@ -19,4 +19,16 @@ class SubcategoryController extends Controller
 
         return response()->json($response, 200);
     }
+
+    public function subcategoryCrafts()      //Menampilkan daftar sub kategori dalam kategori kerajinan (Dashboard per Kategori)
+    {
+        $sub_category = subCategory::where('id_category', 2)->get();
+
+        $response = fractal()
+            ->collection($sub_category)
+            ->transformWith(new SubcategoryTransformer)
+            ->toArray();
+
+        return response()->json($response, 200);
+    }
 }
