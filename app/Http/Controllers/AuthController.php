@@ -53,7 +53,18 @@ class AuthController extends Controller
             ])
             ->toArray();
 
-        return response()->json($response, 201);
+        if($response){
+            return response()->json([
+                'success' => true,
+                'message' => 'Register is successful.',
+                'data' => $response
+            ], 201);
+        }else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Register failed.'
+            ], 401);
+        }
         
     }
 
