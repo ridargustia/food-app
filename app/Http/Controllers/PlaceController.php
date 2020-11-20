@@ -55,7 +55,7 @@ class PlaceController extends Controller
         return response()->json($response, 200);
     }
 
-    public function travelPlaces()
+    public function travelPlaces()      //Menampilkan daftar tempat wisata dengan counter terbanyak (Dashboard per kategori)
     {
         $places = place::where('id_category', 3)
             ->orderBy('counter', 'desc')
