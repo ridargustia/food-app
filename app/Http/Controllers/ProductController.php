@@ -40,4 +40,19 @@ class ProductController extends Controller
         return response()->json($response, 200);
     }
 
+    public function travelsRandom()      //Menampilkan data produk/spot wisata dengan counter terbanyak (Dashboard per kategori)
+    {
+        $travels = product::where('id_category', 3)
+            ->orderBy('counter', 'desc')
+            ->take(3)
+            ->get();
+
+        $response = fractal()
+            ->collection($travels)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
+
+        return response()->json($response, 200);
+    }
+
 }
