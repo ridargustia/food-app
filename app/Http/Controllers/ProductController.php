@@ -9,7 +9,7 @@ use App\product;
 
 class ProductController extends Controller
 {
-    public function foodsRandom()       //Menampilkan data produk kuliner dengan counter terbanyak (Dashboard utama)
+    public function foodsRandom()       //Menampilkan data produk kuliner dengan counter terbanyak (Dashboard utama, Dashboard per kategori)
     {
         // $foods = product::where('id_category', 1)->get()->random(3);
         $foods = product::where('id_category', 1)
@@ -25,7 +25,7 @@ class ProductController extends Controller
         return response()->json($response, 200);
     }
 
-    public function craftsRandom()      //Menampilkan data produk kerajinan dengan counter terbanyak (Dashboard utama)
+    public function craftsRandom()      //Menampilkan data produk kerajinan dengan counter terbanyak (Dashboard utama, Dashboard per kategori)
     {
         $crafts = product::where('id_category', 2)
             ->orderBy('counter', 'desc')
