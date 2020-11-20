@@ -55,6 +55,21 @@ class PlaceController extends Controller
         return response()->json($response, 200);
     }
 
+    public function travelPlaces()
+    {
+        $places = place::where('id_category', 3)
+            ->orderBy('counter', 'desc')
+            ->take(3)
+            ->get();
+
+        $response = fractal()
+            ->collection($places)
+            ->transformWith(new PlaceTransformer)
+            ->toArray();
+
+        return response()->json($response, 200);
+    }
+
     public function add(Request $request)       //POST data place
     {
         $this->validate($request, [
