@@ -61,7 +61,10 @@ class AuthController extends Controller
     {
         if(!Auth::attempt(['phone_number' => $request->phone_number, 'password' => $request->password]))
         {
-            return response()->json(['error' => 'Login failed !'], 401);
+            return response()->json([
+                'success' => false,
+                'message' => 'Login failed.'
+            ], 401);
         }
 
         $user = $user->find(Auth::user()->id);
@@ -74,6 +77,14 @@ class AuthController extends Controller
             ])
             ->toArray();
 
-        return response()->json($response, 200);
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Login success.',
+                'data' => $response
+            ], 200);
+        }
+
     }
 }
