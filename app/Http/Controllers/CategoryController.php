@@ -8,12 +8,15 @@ use App\category;
 
 class CategoryController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $categories = category::all();
 
-        return fractal()
+        $response = fractal()
             ->collection($categories)
             ->transformWith(new CategoryTransformer)
             ->toArray();
+
+        return response()->json($response, 200);
     }
 }

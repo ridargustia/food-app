@@ -17,10 +17,12 @@ class ProductController extends Controller
             ->take(3)
             ->get();
 
-        return fractal()
+        $response = fractal()
             ->collection($foods)
             ->transformWith(new ProductTransformer)
             ->toArray();
+
+        return response()->json($response, 200);
     }
 
     public function craftsRandom()      //Menampilkan data produk kerajinan dengan counter terbanyak (Dashboard utama)
@@ -30,10 +32,12 @@ class ProductController extends Controller
             ->take(3)
             ->get();
 
-        return fractal()
+        $response = fractal()
             ->collection($crafts)
             ->transformWith(new ProductTransformer)
             ->toArray();
+
+        return response()->json($response, 200);
     }
 
 }

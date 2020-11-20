@@ -13,9 +13,11 @@ class UserController extends Controller
     {
         $user = $user->find(Auth::user()->id);
 
-        return fractal()
+        $response = fractal()
             ->item($user)
             ->transformWith(new UserTransformer)
             ->toArray();
+
+        return response()->json($response, 200);
     }
 }

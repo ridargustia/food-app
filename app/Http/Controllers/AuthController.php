@@ -66,12 +66,14 @@ class AuthController extends Controller
 
         $user = $user->find(Auth::user()->id);
 
-        return fractal()
+        $response = fractal()
             ->item($user)
             ->transformWith(new UserTransformer)
             ->addMeta([
                 'token' => $user->api_token
             ])
             ->toArray();
+
+        return response()->json($response, 200);
     }
 }

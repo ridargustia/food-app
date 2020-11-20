@@ -17,10 +17,12 @@ class PlaceController extends Controller
             ->take(3)
             ->get();
 
-        return fractal()
+        $response = fractal()
             ->collection($travels)
             ->transformWith(new PlaceTransformer)
             ->toArray();
+
+        return response()->json($response, 200);
     }
 
     public function foodPlaces()        //Menampilkan daftar tempat makan yg memiliki counter terbanyak (Dashboard per kategori)
