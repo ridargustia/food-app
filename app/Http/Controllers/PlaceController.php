@@ -23,6 +23,21 @@ class PlaceController extends Controller
             ->toArray();
     }
 
+    public function foodPlaces()        //Menampilkan daftar tempat makan yg memiliki counter terbanyak (Dashboard per kategori)
+    {
+        $places = place::where('id_category', 1)
+            ->orderBy('counter', 'desc')
+            ->take(3)
+            ->get();
+
+        $response = fractal()
+            ->collection($places)
+            ->transformWith(new PlaceTransformer)
+            ->toArray();
+        
+        return response()->json($response, 200);
+    }
+
     public function add(Request $request)       //POST data place
     {
         $this->validate($request, [
