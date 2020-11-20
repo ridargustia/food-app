@@ -9,6 +9,7 @@ Route::get('v1/foods/random', 'ProductController@foodsRandom');
 Route::get('v1/crafts/random', 'ProductController@craftsRandom');
 Route::get('v1/travels/random', 'ProductController@travelsRandom');
 Route::get('v1/places/food', 'PlaceController@foodPlaces');
+Route::get('v1/subcategories/food', 'SubcategoryController@subcategoryFoods');
 
 Route::get('v1/user/profile', 'UserController@profile')->middleware('auth:api');
 Route::post('v1/place', 'PlaceController@add')->middleware('auth:api');
