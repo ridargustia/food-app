@@ -48,7 +48,15 @@ class ProductController extends Controller
             ->transformWith(new ProductTransformer)
             ->toArray();
 
-        return response()->json($response, 200);
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+        
     }
 
     public function travelsRandom()      //Menampilkan data produk/spot wisata dengan counter terbanyak (Dashboard per kategori)
