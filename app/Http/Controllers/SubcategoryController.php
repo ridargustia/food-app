@@ -17,7 +17,15 @@ class SubcategoryController extends Controller
             ->transformWith(new SubcategoryTransformer)
             ->toArray();
 
-        return response()->json($response, 200);
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+        
     }
 
     public function subcategoryCrafts()      //Menampilkan daftar sub kategori dalam kategori kerajinan (Dashboard per Kategori)
@@ -29,7 +37,15 @@ class SubcategoryController extends Controller
             ->transformWith(new SubcategoryTransformer)
             ->toArray();
 
-        return response()->json($response, 200);
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+        
     }
 
     public function subcategoryTravels()      //Menampilkan daftar sub kategori dalam kategori kerajinan (Dashboard per Kategori)
@@ -41,6 +57,14 @@ class SubcategoryController extends Controller
             ->transformWith(new SubcategoryTransformer)
             ->toArray();
 
-        return response()->json($response, 200);
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+        
     }
 }

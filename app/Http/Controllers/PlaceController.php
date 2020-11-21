@@ -45,7 +45,15 @@ class PlaceController extends Controller
             ->transformWith(new PlaceTransformer)
             ->toArray();
         
-        return response()->json($response, 200);
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+        
     }
 
     public function craftPlaces()        //Menampilkan daftar tempat kerajinan yg memiliki counter terbanyak (Dashboard per kategori)
@@ -60,7 +68,15 @@ class PlaceController extends Controller
             ->transformWith(new PlaceTransformer)
             ->toArray();
         
-        return response()->json($response, 200);
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+        
     }
 
     public function travelPlaces()      //Menampilkan daftar tempat wisata dengan counter terbanyak (Dashboard per kategori)
@@ -75,7 +91,15 @@ class PlaceController extends Controller
             ->transformWith(new PlaceTransformer)
             ->toArray();
 
-        return response()->json($response, 200);
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+        
     }
 
     public function add(Request $request)       //POST data place
