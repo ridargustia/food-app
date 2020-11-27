@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('id_subcategory');
             $table->string('name');
             $table->integer('price');
-            $table->string('description');
+            $table->longText('description');
             $table->string('image');
             $table->boolean('is_active')->default(0);
             $table->boolean('is_order')->default(0);

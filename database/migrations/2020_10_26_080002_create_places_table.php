@@ -21,7 +21,7 @@ class CreatePlacesTable extends Migration
             $table->string('phone_number');
             $table->string('address');
             $table->string('open_time');
-            $table->string('description');
+            $table->longText('description');
             $table->string('url_gmap');
             $table->boolean('is_open')->default(0);
             $table->boolean('is_close')->default(0);
