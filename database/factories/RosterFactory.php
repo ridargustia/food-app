@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\User;
+use App\roster;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -17,14 +17,10 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(roster::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'phone_number' => $faker->numerify('####-####-####'),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'api_token' => Str::random(10),
-        'level_user' => 2,
-        'image' => 'default.jpg',
-        'remember_token' => Str::random(10),
+        'id_product' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
+        'id_user' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
+        'title' => $faker->sentence($nbWords = 2, $variableNbWords = true),
     ];
 });
