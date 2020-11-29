@@ -14,7 +14,7 @@ class PlaceController extends Controller
     {
         $travels = place::where('id_category', 3)
             ->orderBy('counter', 'desc')
-            ->take(3)
+            ->take(10)
             ->get();
 
         $response = fractal()
@@ -37,7 +37,7 @@ class PlaceController extends Controller
     {
         $places = place::where('id_category', 1)
             ->orderBy('counter', 'desc')
-            ->take(3)
+            ->take(10)
             ->get();
 
         $response = fractal()
@@ -60,7 +60,7 @@ class PlaceController extends Controller
     {
         $places = place::where('id_category', 2)
             ->orderBy('counter', 'desc')
-            ->take(3)
+            ->take(10)
             ->get();
 
         $response = fractal()
@@ -83,7 +83,7 @@ class PlaceController extends Controller
     {
         $places = place::where('id_category', 3)
             ->orderBy('counter', 'desc')
-            ->take(3)
+            ->take(10)
             ->get();
 
         $response = fractal()

@@ -14,7 +14,7 @@ class ProductController extends Controller
         // $foods = product::where('id_category', 1)->get()->random(3);
         $foods = product::where('id_category', 1)
             ->orderBy('counter', 'desc')
-            ->take(3)
+            ->take(10)
             ->get();
 
         $response = fractal()
@@ -40,7 +40,7 @@ class ProductController extends Controller
     {
         $crafts = product::where('id_category', 2)
             ->orderBy('counter', 'desc')
-            ->take(3)
+            ->take(10)
             ->get();
 
         $response = fractal()
@@ -63,7 +63,7 @@ class ProductController extends Controller
     {
         $travels = product::where('id_category', 3)
             ->orderBy('counter', 'desc')
-            ->take(3)
+            ->take(10)
             ->get();
 
         $response = fractal()

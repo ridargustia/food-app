@@ -14,6 +14,7 @@ class SubcategoryTransformer extends TransformerAbstract
             'id' => $subCategory->id,
             'id_category' => $subCategory->id_category,
             'name' => $subCategory->name,
+            'image' => $subCategory->image,
             'registered' => $subCategory->created_at->diffForHumans(),
         ];
     }

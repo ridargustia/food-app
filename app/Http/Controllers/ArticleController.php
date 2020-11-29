@@ -10,7 +10,7 @@ class ArticleController extends Controller
 {
     public function index()     //Menampilkan daftar artikel secara random (Dashboard utama)
     {
-        $articles = article::all()->random(1);
+        $articles = article::all()->random(10);
 
         $response = fractal()
             ->collection($articles)
