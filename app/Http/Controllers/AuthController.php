@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Transformers\UserTransformer;
+use App\Transformers\LoginTransformer;
 use Auth;
 
 class AuthController extends Controller
@@ -82,10 +83,7 @@ class AuthController extends Controller
 
         $response = fractal()
             ->item($user)
-            ->transformWith(new UserTransformer)
-            ->addMeta([
-                'token' => $user->api_token
-            ])
+            ->transformWith(new LoginTransformer)
             ->toArray();
 
         if($response)
