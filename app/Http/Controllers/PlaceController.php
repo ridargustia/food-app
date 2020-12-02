@@ -102,6 +102,40 @@ class PlaceController extends Controller
         
     }
 
+    public function search(Request $request)    //Menampilkan daftar place dengan fitur pencarian(search) 
+    {
+        // if($request->has('search')){
+        if($request->search != null){
+            $results = place::where('name', 'LIKE', '%'.$request->search.'%')->get();
+
+        }else{
+            $results = place::orderBy('counter', 'desc')
+                ->take(10)
+                ->get();
+        }
+
+        $count = $results->count();
+        if($count > 0){
+            $message = 'Request is successful.';
+        }else{
+            $message = 'Not found.';
+        }
+
+        $response = fractal()
+            ->collection($results)
+            ->transformWith(new PlaceTransformer)
+            ->toArray();
+
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+                'data' => $response
+            ], 200);
+        }
+    }
+
     public function add(Request $request)       //POST data place
     {
         $this->validate($request, [
