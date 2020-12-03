@@ -17,6 +17,7 @@ Route::get('v1/subcategories/travel', 'SubcategoryController@subcategoryTravels'
 Route::get('v1/products/travel', 'ProductController@travelsRandom'); //Menampilkan produk/spot wisata dengan counter terbanyak
 Route::get('v1/articles/random', 'ArticleController@index'); //Menampilkan daftar artikel secara random
 Route::post('v1/search/places', 'PlaceController@search'); //Menampilkan daftar place dengan search
+Route::post('v1/search/products', 'ProductController@search'); //Menampilkan daftar product dengan search
 
 
 Route::get('v1/user/profile', 'UserController@profile')->middleware('auth:api');

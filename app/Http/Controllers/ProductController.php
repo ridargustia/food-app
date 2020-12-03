@@ -82,4 +82,38 @@ class ProductController extends Controller
         
     }
 
+    public function search(Request $request)    //Menampilkan daftar product dengan fitur pencarian(search) 
+    {
+        // if($request->has('search')){
+        if($request->search != null){
+            $results = product::where('name', 'LIKE', '%'.$request->search.'%')->get();
+
+        }else{
+            $results = product::orderBy('counter', 'desc')
+                ->take(10)
+                ->get();
+        }
+
+        $count = $results->count();
+        if($count > 0){
+            $message = 'Request is successful.';
+        }else{
+            $message = 'Not found.';
+        }
+
+        $response = fractal()
+            ->collection($results)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
+
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+                'data' => $response
+            ], 200);
+        }
+    }
+
 }
