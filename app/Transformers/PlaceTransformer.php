@@ -3,17 +3,22 @@
 namespace App\Transformers;
 
 use App\place;
+use App\Transformers\ProductTransformer;
 use League\Fractal\TransformerAbstract;
 
 
 class PlaceTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = [
+        'products'
+    ];
+
     public function transform(place $place)
     {
         return [
             'id' => $place->id,
-            'id_category' => $place->id_category,
-            'id_user' => $place->id_user,
+            'category_id' => $place->category_id,
+            'user_id' => $place->user_id,
             'name' => $place->name,
             'phone_number' => $place->phone_number,
             'address' => $place->address,
@@ -26,5 +31,12 @@ class PlaceTransformer extends TransformerAbstract
             'counter' => $place->counter,
             'registered' => $place->created_at->diffForHumans(),
         ];
+    }
+
+    public function includeProducts(place $place)
+    {
+        $products = $place->products()->latestFirst()->get();
+
+        return $this->collection($products, new ProductTransformer);
     }
 }

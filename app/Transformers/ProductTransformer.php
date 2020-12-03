@@ -12,9 +12,9 @@ class ProductTransformer extends TransformerAbstract
     {
         return [
             'id' => $product->id,
-            'id_place' => $product->id_place,
-            'id_category' => $product->id_category,
-            'id_subcategory' => $product->id_subcategory,
+            'place_id' => $product->place_id,
+            'category_id' => $product->category_id,
+            'subcategory_id' => $product->subcategory_id,
             'name' => $product->name,
             'price' => $product->price,
             'description' => $product->description,

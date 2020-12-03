@@ -12,7 +12,7 @@ class PlaceController extends Controller
 {
     public function travelsRandom()         //Menampilkan data place wisata dengan counter terbanyak (Dashboard utama)
     {
-        $travels = place::where('id_category', 3)
+        $travels = place::where('category_id', 3)
             ->orderBy('counter', 'desc')
             ->take(10)
             ->get();
@@ -35,7 +35,7 @@ class PlaceController extends Controller
 
     public function foodPlaces()        //Menampilkan daftar tempat makan yg memiliki counter terbanyak (Dashboard per kategori)
     {
-        $places = place::where('id_category', 1)
+        $places = place::where('category_id', 1)
             ->orderBy('counter', 'desc')
             ->take(10)
             ->get();
@@ -58,7 +58,7 @@ class PlaceController extends Controller
 
     public function craftPlaces()        //Menampilkan daftar tempat kerajinan yg memiliki counter terbanyak (Dashboard per kategori)
     {
-        $places = place::where('id_category', 2)
+        $places = place::where('category_id', 2)
             ->orderBy('counter', 'desc')
             ->take(10)
             ->get();
@@ -81,7 +81,7 @@ class PlaceController extends Controller
 
     public function travelPlaces()      //Menampilkan daftar tempat wisata dengan counter terbanyak (Dashboard per kategori)
     {
-        $places = place::where('id_category', 3)
+        $places = place::where('category_id', 3)
             ->orderBy('counter', 'desc')
             ->take(10)
             ->get();
@@ -136,10 +136,30 @@ class PlaceController extends Controller
         }
     }
 
+    public function detailPlaceById(place $place, $id) //Menampilkan detail place by id dan include product di dalamnya
+    {
+        $place = $place->find($id);
+
+        $response = fractal()
+            ->item($place)
+            ->transformWith(new PlaceTransformer)
+            ->includeProducts()
+            ->toArray();
+
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+    }
+
     public function add(Request $request)       //POST data place
     {
         $this->validate($request, [
-            'id_category' => 'required',
+            'category_id' => 'required',
             'name' => 'required|string',
             'phone_number' => 'required|string',
             'address' => 'required|string',
@@ -149,8 +169,8 @@ class PlaceController extends Controller
         ]);
 
         $place = place::create([
-            'id_category' => $request->id_category,
-            'id_user' => Auth::user()->id,
+            'category_id' => $request->category_id,
+            'user_id' => Auth::user()->id,
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
@@ -171,7 +191,7 @@ class PlaceController extends Controller
     {
         $user = Auth::user()->id;
         // $place = place::where('id_user', 8);
-        $place = place::where('id_user', $user)->get();
+        $place = place::where('user_id', $user)->get();
         // $place = place::all();
 
         return fractal()

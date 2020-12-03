@@ -18,6 +18,7 @@ Route::get('v1/products/travel', 'ProductController@travelsRandom'); //Menampilk
 Route::get('v1/articles/random', 'ArticleController@index'); //Menampilkan daftar artikel secara random
 Route::post('v1/search/places', 'PlaceController@search'); //Menampilkan daftar place dengan search
 Route::post('v1/search/products', 'ProductController@search'); //Menampilkan daftar product dengan search
+Route::get('v1/detail/places/{id}', 'PlaceController@detailPlaceById'); //Menampilkan detail place by id dan include product
 
 
 Route::get('v1/user/profile', 'UserController@profile')->middleware('auth:api');
