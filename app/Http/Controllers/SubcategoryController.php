@@ -10,7 +10,7 @@ class SubcategoryController extends Controller
 {
     public function subcategoryFoods()      //Menampilkan daftar sub kategori dalam kategori kuliner (Dashboard per Kategori)
     {
-        $sub_category = subCategory::where('id_category', 1)->get();
+        $sub_category = subCategory::where('category_id', 1)->get();
 
         $response = fractal()
             ->collection($sub_category)
@@ -30,7 +30,7 @@ class SubcategoryController extends Controller
 
     public function subcategoryCrafts()      //Menampilkan daftar sub kategori dalam kategori kerajinan (Dashboard per Kategori)
     {
-        $sub_category = subCategory::where('id_category', 2)->get();
+        $sub_category = subCategory::where('category_id', 2)->get();
 
         $response = fractal()
             ->collection($sub_category)
@@ -50,7 +50,7 @@ class SubcategoryController extends Controller
 
     public function subcategoryTravels()      //Menampilkan daftar sub kategori dalam kategori kerajinan (Dashboard per Kategori)
     {
-        $sub_category = subCategory::where('id_category', 3)->get();
+        $sub_category = subCategory::where('category_id', 3)->get();
 
         $response = fractal()
             ->collection($sub_category)

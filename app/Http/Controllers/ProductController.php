@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function foodsRandom()       //Menampilkan data produk kuliner dengan counter terbanyak (Dashboard utama, Dashboard per kategori)
     {
         // $foods = product::where('id_category', 1)->get()->random(3);
-        $foods = product::where('id_category', 1)
+        $foods = product::where('category_id', 1)
             ->orderBy('counter', 'desc')
             ->take(10)
             ->get();
@@ -38,7 +38,7 @@ class ProductController extends Controller
 
     public function craftsRandom()      //Menampilkan data produk kerajinan dengan counter terbanyak (Dashboard utama, Dashboard per kategori)
     {
-        $crafts = product::where('id_category', 2)
+        $crafts = product::where('category_id', 2)
             ->orderBy('counter', 'desc')
             ->take(10)
             ->get();
@@ -61,7 +61,7 @@ class ProductController extends Controller
 
     public function travelsRandom()      //Menampilkan data produk/spot wisata dengan counter terbanyak (Dashboard per kategori)
     {
-        $travels = product::where('id_category', 3)
+        $travels = product::where('category_id', 3)
             ->orderBy('counter', 'desc')
             ->take(10)
             ->get();

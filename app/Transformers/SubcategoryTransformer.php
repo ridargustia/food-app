@@ -12,7 +12,7 @@ class SubcategoryTransformer extends TransformerAbstract
     {
         return [
             'id' => $subCategory->id,
-            'id_category' => $subCategory->id_category,
+            'category_id' => $subCategory->category_id,
             'name' => $subCategory->name,
             'image' => $subCategory->image,
             'registered' => $subCategory->created_at->diffForHumans(),
