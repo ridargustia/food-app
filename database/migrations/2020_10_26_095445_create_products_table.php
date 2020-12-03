@@ -15,9 +15,9 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_place');
-            $table->unsignedBigInteger('id_category');
-            $table->unsignedBigInteger('id_subcategory');
+            $table->unsignedBigInteger('place_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('subcategory_id');
             $table->string('name');
             $table->integer('price');
             $table->longText('description');
@@ -28,9 +28,9 @@ class CreateProductsTable extends Migration
             $table->integer('rating');
             $table->timestamps();
 
-            $table->foreign('id_place')->references('id')->on('places');
-            $table->foreign('id_category')->references('id')->on('categories');
-            $table->foreign('id_subcategory')->references('id')->on('sub_categories');
+            $table->foreign('place_id')->references('id')->on('places');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('subcategory_id')->references('id')->on('sub_categories');
         });
     }
 

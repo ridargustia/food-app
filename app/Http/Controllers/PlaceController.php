@@ -10,29 +10,6 @@ use Auth;
 
 class PlaceController extends Controller
 {
-    public function travelsRandom()         //Menampilkan data place wisata dengan counter terbanyak (Dashboard utama)
-    {
-        $travels = place::where('id_category', 3)
-            ->orderBy('counter', 'desc')
-            ->take(10)
-            ->get();
-
-        $response = fractal()
-            ->collection($travels)
-            ->transformWith(new PlaceTransformer)
-            ->toArray();
-
-        if($response)
-        {
-            return response()->json([
-                'success' => true,
-                'message' => 'Request is successful.',
-                'data' => $response
-            ], 200);
-        }
-        
-    }
-
     public function foodPlaces()        //Menampilkan daftar tempat makan yg memiliki counter terbanyak (Dashboard per kategori)
     {
         $places = place::where('id_category', 1)
@@ -81,7 +58,7 @@ class PlaceController extends Controller
 
     public function travelPlaces()      //Menampilkan daftar tempat wisata dengan counter terbanyak (Dashboard per kategori)
     {
-        $places = place::where('id_category', 3)
+        $places = place::where('category_id', 3)
             ->orderBy('counter', 'desc')
             ->take(10)
             ->get();

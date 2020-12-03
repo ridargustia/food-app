@@ -15,8 +15,8 @@ class CreatePlacesTable extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_category');
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('phone_number');
             $table->string('address');
@@ -29,8 +29,8 @@ class CreatePlacesTable extends Migration
             $table->integer('counter')->default(0);
             $table->timestamps();
 
-            $table->foreign('id_category')->references('id')->on('categories');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

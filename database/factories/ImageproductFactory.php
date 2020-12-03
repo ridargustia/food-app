@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 
 $factory->define(imageProduct::class, function (Faker $faker) {
     return [
-        'id_product' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
+        'product_id' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
         'name' => 'default.jpg',
     ];
 });

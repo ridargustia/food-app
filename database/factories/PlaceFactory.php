@@ -19,8 +19,8 @@ use Illuminate\Support\Str;
 
 $factory->define(place::class, function (Faker $faker) {
     return [
-        'id_category' => $faker->randomElement($array = array(1, 2, 3)),
-        'id_user' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
+        'category_id' => $faker->randomElement($array = array(1, 2, 3)),
+        'user_id' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
         'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
         'phone_number' => $faker->numerify('####-####-####'),
         'address' => $faker->address,

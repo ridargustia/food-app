@@ -19,9 +19,9 @@ use Illuminate\Support\Str;
 
 $factory->define(product::class, function (Faker $faker) {
     return [
-        'id_place' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
-        'id_category' => 1,
-        'id_subcategory' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)),
+        'place_id' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
+        'category_id' => 1,
+        'subcategory_id' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)),
         'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
         'price' => $faker->randomElement($array = array(5000, 7500, 8000, 10000, 11500, 12000, 17000)),
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

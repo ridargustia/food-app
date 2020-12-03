@@ -15,11 +15,11 @@ class CreateVillagesTable extends Migration
     {
         Schema::create('villages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_city');
+            $table->unsignedBigInteger('city_id');
             $table->string('name');
             $table->timestamps();
 
-            $table->foreign('id_city')->references('id')->on('cities');
+            $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 

@@ -12,8 +12,8 @@ class PlaceTransformer extends TransformerAbstract
     {
         return [
             'id' => $place->id,
-            'id_category' => $place->id_category,
-            'id_user' => $place->id_user,
+            'category_id' => $place->category_id,
+            'user_id' => $place->user_id,
             'name' => $place->name,
             'phone_number' => $place->phone_number,
             'address' => $place->address,

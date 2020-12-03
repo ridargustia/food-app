@@ -7,7 +7,7 @@ Route::post('v1/auth/login', 'AuthController@login');  //Fitur API untuk Login
 Route::get('v1/category', 'CategoryController@index'); //Menampilkan menu kategori
 Route::get('v1/foods/random', 'ProductController@foodsRandom'); //Menampilkan daftar makanan dengan counter terbanyak
 Route::get('v1/crafts/random', 'ProductController@craftsRandom'); //Menampilkan produk kerajinan dengan counter terbanyak 
-Route::get('v1/travels/random', 'PlaceController@travelsRandom'); //Menampilkan daftar tempat wisata dengan counter terbanyak 
+// Route::get('v1/travels/random', 'PlaceController@travelsRandom'); //Menampilkan daftar tempat wisata dengan counter terbanyak 
 Route::get('v1/places/food', 'PlaceController@foodPlaces'); //Menampilkan daftar tempat makan dengan counter terbanyak
 Route::get('v1/subcategories/food', 'SubcategoryController@subcategoryFoods');  //Menampilkan sub kategori dalam kategori makanan
 Route::get('v1/places/craft', 'PlaceController@craftPlaces'); //Menampilkan daftar tempat kerajinan dengan counter terbanyak
