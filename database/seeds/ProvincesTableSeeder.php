@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\roster;
+use App\province;
 
-class RostersTableSeeder extends Seeder
+class ProvincesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,8 @@ class RostersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(roster::class, 40)->create();
+        province::create([
+            'name' => 'Yogyakarta'
+        ]);
     }
 }

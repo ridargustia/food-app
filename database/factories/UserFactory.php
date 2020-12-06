@@ -22,7 +22,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'phone_number' => $faker->numerify('####-####-####'),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'api_token' => Str::random(10),
+        'api_token' => bcrypt($faker->unique()->safeEmail),
         'level_user' => 2,
         'image' => 'default.jpg',
         'remember_token' => Str::random(10),

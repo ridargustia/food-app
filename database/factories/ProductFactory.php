@@ -3,6 +3,9 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\product;
+use App\place;
+use App\category;
+use App\subCategory;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -19,17 +22,12 @@ use Illuminate\Support\Str;
 
 $factory->define(product::class, function (Faker $faker) {
     return [
-        'place_id' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
-        'category_id' => 1,
-        'subcategory_id' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)),
-        'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
-        'price' => $faker->randomElement($array = array(5000, 7500, 8000, 10000, 11500, 12000, 17000)),
-        'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'place_id' => place::inRandomOrder()->first()->id,
+        'category_id' => category::inRandomOrder()->first()->id,
+        'subcategory_id' => subCategory::inRandomOrder()->first()->id,
+        'name' => $faker->word,
+        'price' => $faker->numberBetween(10000, 100000),
+        'description' => $faker->paragraph,
         'image' => 'default.jpg',
         'is_active' => 1,
         'is_order' => 1,

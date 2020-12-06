@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\imageProduct;
+use App\product;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Str;
 
 $factory->define(imageProduct::class, function (Faker $faker) {
     return [
-        'product_id' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
+        'product_id' => product::inRandomOrder()->first()->id,
         'name' => 'default.jpg',
     ];
 });

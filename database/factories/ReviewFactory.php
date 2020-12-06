@@ -3,6 +3,8 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\review;
+use App\product;
+use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -19,13 +21,8 @@ use Illuminate\Support\Str;
 
 $factory->define(review::class, function (Faker $faker) {
     return [
-        'product_id' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
-        'user_id' => $faker->randomElement($array = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
-        'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'product_id' => product::inRandomOrder()->first()->id,
+        'user_id' => User::inRandomOrder()->first()->id,
+        'content' => $faker->paragraph,
     ];
 });

@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\roster;
+use App\imagePlace;
 
-class RostersTableSeeder extends Seeder
+class ImageplacesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class RostersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(roster::class, 40)->create();
+        factory(imagePlace::class, 50)->create();
     }
 }

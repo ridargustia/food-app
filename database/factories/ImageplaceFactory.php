@@ -2,9 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\roster;
-use App\product;
-use App\User;
+use App\imagePlace;
+use App\place;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -19,10 +18,9 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(roster::class, function (Faker $faker) {
+$factory->define(imagePlace::class, function (Faker $faker) {
     return [
-        'product_id' => product::inRandomOrder()->first()->id,
-        'user_id' => User::inRandomOrder()->first()->id,
-        'title' => $faker->sentence,
+        'place_id' => place::inRandomOrder()->first()->id,
+        'name' => 'default.jpg',
     ];
 });
