@@ -6,6 +6,7 @@ use App\Transformers\ProductTransformer;
 use App\Transformers\PlaceTransformer;
 use Illuminate\Http\Request;
 use App\product;
+use App\place;
 
 class ProductController extends Controller
 {
@@ -112,6 +113,34 @@ class ProductController extends Controller
                 'success' => true,
                 'message' => $message,
                 'data' => $response
+            ], 200);
+        }
+    }
+
+    public function detailProductById(product $product, $id)
+    {
+        $product = $product->find($id);
+
+        $place = place::where('id', $product->place_id)->get();
+
+        $responseProduct = fractal()
+            ->item($product)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
+
+        $responsePlace = fractal()
+            ->collection($place)
+            ->transformWith(new PlaceTransformer)
+            ->includeProducts()
+            ->toArray();
+
+        if($responseProduct && $responsePlace)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'product' => $responseProduct,
+                'place' => $responsePlace
             ], 200);
         }
     }
