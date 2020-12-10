@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Transformers\SubcategoryTransformer;
 use App\Transformers\ProductTransformer;
 use App\Transformers\PlaceTransformer;
 use Illuminate\Http\Request;
+use App\subCategory;
 use App\product;
 use App\place;
 
@@ -117,30 +119,48 @@ class ProductController extends Controller
         }
     }
 
-    public function detailProductById(product $product, $id)
+    public function detailProductById(product $product, $id)    //Menampilkan detail product by id dengan place terkait dan products lain yang terkait
     {
         $product = $product->find($id);
 
-        $place = place::where('id', $product->place_id)->get();
+        $subCategory = subCategory::where('id', $product->subcategory_id)->get();
 
+        $place = place::where('id', $product->place_id)->get()->first();
+        
+        $products = product::where('place_id', $place->id)
+            ->where('id', '!=', $id)
+            ->take(10)
+            ->get();
+        
         $responseProduct = fractal()
             ->item($product)
             ->transformWith(new ProductTransformer)
             ->toArray();
 
-        $responsePlace = fractal()
-            ->collection($place)
-            ->transformWith(new PlaceTransformer)
-            ->includeProducts()
+        $responseSubcategory = fractal()
+            ->collection($subCategory)
+            ->transformWith(new SubcategoryTransformer)
             ->toArray();
 
-        if($responseProduct && $responsePlace)
+        $responsePlace = fractal()
+            ->item($place)
+            ->transformWith(new PlaceTransformer)
+            ->toArray();
+
+        $responseOtherProducts = fractal()
+            ->collection($products)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
+
+        if($responseProduct && $responseSubcategory && $responsePlace && $responseOtherProducts)
         {
             return response()->json([
                 'success' => true,
                 'message' => 'Request is successful.',
                 'product' => $responseProduct,
-                'place' => $responsePlace
+                'subcategory' => $responseSubcategory,
+                'place' => $responsePlace,
+                'otherproducts' => $responseOtherProducts
             ], 200);
         }
     }
