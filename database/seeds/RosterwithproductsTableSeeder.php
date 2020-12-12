@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\roster;
+use App\rosterWithProduct;
 
-class RostersTableSeeder extends Seeder
+class RosterwithproductsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class RostersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(roster::class, 15)->create();
+        factory(rosterWithProduct::class, 50)->create();
     }
 }
