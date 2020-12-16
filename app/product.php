@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\roster;
 use App\place;
 
 class product extends Model
@@ -19,5 +20,10 @@ class product extends Model
     public function place()
     {
         return $this->belongsTo(place::class);
+    }
+
+    public function rosters()
+    {
+        return $this->belongsToMany(roster::class, 'roster_with_products');
     }
 }
