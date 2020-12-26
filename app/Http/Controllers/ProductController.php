@@ -165,4 +165,24 @@ class ProductController extends Controller
         }
     }
 
+    public function productsRandom()    //Menampilkan product/spot random sebanyak 20 data (explore)
+    {
+        //$products = product::where('category_id', 2)->inRandomOrder()->limit(10)->get(); //Random with where limit 10
+        $products = product::all()->random(20);
+
+        $response = fractal()
+            ->collection($products)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
+
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+    }
+
 }
