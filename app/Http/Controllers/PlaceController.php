@@ -133,6 +133,25 @@ class PlaceController extends Controller
         }
     }
 
+    public function placesRandom()   //Menampilkan daftar places secara random sebanyak 4 data (Explore)
+    {
+        $places = place::all()->random(4);
+
+        $response = fractal()
+            ->collection($places)
+            ->transformWith(new PlaceTransformer)
+            ->toArray();
+
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+    }
+
     public function add(Request $request)       //POST data place
     {
         $this->validate($request, [

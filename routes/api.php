@@ -23,6 +23,7 @@ Route::get('v1/detail/products/{id}', 'ProductController@detailProductById'); //
 Route::get('v1/user/profile', 'UserController@profile')->middleware('auth:api'); //Menampilkan profil user dengan include places
 Route::get('v1/user/list', 'RosterController@index')->middleware('auth:api'); //Menampilkan list yang dimiliki masing2 user
 Route::get('v1/products/random', 'ProductController@productsRandom'); //Menampilkan daftar products secara random sebanyak 20 data
+Route::get('v1/places/random', 'PlaceController@placesRandom'); //Menampilkan daftar places secara random sebanyak 4 data
 
 Route::post('v1/place', 'PlaceController@add')->middleware('auth:api');
 Route::get('v1/place', 'PlaceController@show')->middleware('auth:api');
