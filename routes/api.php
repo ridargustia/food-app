@@ -24,6 +24,7 @@ Route::get('v1/user/profile', 'UserController@profile')->middleware('auth:api');
 Route::get('v1/user/list', 'RosterController@index')->middleware('auth:api'); //Menampilkan list yang dimiliki masing2 user
 Route::get('v1/products/random', 'ProductController@productsRandom'); //Menampilkan daftar products secara random sebanyak 20 data
 Route::get('v1/places/random', 'PlaceController@placesRandom'); //Menampilkan daftar places secara random sebanyak 4 data
+Route::get('v1/productsnonspot/random', 'ProductController@productsNonSpot'); //Menampilkan daftar product selain spot wisata secara random sebanyak 20 data
 
 Route::post('v1/place', 'PlaceController@add')->middleware('auth:api');
 Route::get('v1/place', 'PlaceController@show')->middleware('auth:api');

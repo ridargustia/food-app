@@ -185,4 +185,26 @@ class ProductController extends Controller
         }
     }
 
+    public function productsNonSpot()   //Menampilkan daftar products selain spot wisata secara random sebanyak 20 data (Explore)
+    {
+        $products = product::where('category_id', '!=', 3)
+            ->inRandomOrder()
+            ->limit(20)
+            ->get();
+
+        $response = fractal()
+            ->collection($products)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
+
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+    }
+
 }
