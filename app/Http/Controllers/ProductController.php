@@ -207,4 +207,26 @@ class ProductController extends Controller
         }
     }
 
+    public function spotsRandom()    //Menampilkan daftar spot wisata secara random sebanyak 20 data (Explore)
+    {
+        $spots = product::where('category_id', 3)
+            ->inRandomOrder()
+            ->limit(20)
+            ->get();
+
+        $response = fractal()
+            ->collection($spots)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
+
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+    }
+
 }
