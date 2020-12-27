@@ -174,6 +174,28 @@ class PlaceController extends Controller
         }
     }
 
+    public function placesNonTravel()   //Menampilkan daftar places non wisata secara random sebanyak 20 data (explore)
+    {
+        $places = place::where('category_id', '!=', 3)
+            ->inRandomOrder()
+            ->limit(20)
+            ->get();
+
+        $response = fractal()
+            ->collection($places)
+            ->transformWith(new PlaceTransformer)
+            ->toArray();
+
+        if($response)
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Request is successful.',
+                'data' => $response
+            ], 200);
+        }
+    }
+
     public function add(Request $request)       //POST data place
     {
         $this->validate($request, [
