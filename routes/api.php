@@ -26,6 +26,7 @@ Route::get('v1/products/random', 'ProductController@productsRandom'); //Menampil
 Route::get('v1/places/random', 'PlaceController@placesRandom'); //Menampilkan daftar places secara random sebanyak 4 data
 Route::get('v1/productsnonspot/random', 'ProductController@productsNonSpot'); //Menampilkan daftar product selain spot wisata secara random sebanyak 20 data
 Route::get('v1/spots/random', 'ProductController@spotsRandom'); //Menampilkan daftar spot wisata secara random sebanyak 20 data
+Route::get('v1/travelsplace/random', 'PlaceController@travelsPlaceRandom'); //Menampilkan daftar places wisata secara random sebanyak 20 data (Explore)
 
 Route::post('v1/place', 'PlaceController@add')->middleware('auth:api');
 Route::get('v1/place', 'PlaceController@show')->middleware('auth:api');
